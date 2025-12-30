@@ -21,5 +21,9 @@
 
 /app/tmp/*
 /app/Config/core.php
-/app/Config/database.php
 /vendors/*
+
+# Environment variabelen
+.env
+.env.local
+.env.*.local
