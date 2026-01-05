@@ -10,7 +10,7 @@ class DatabaseFunctions
         // EERST: Setup met ROOT
         $this->setupDatabase();
 
-        // DAN: Connecteer met normal_user
+        // DAN: Connect met normal_user
         $host = $_ENV['DB_HOST'];
         $db = $_ENV['DB_NAME'];
         $user = $_ENV['DB_USER_USERNAME'];
@@ -81,7 +81,7 @@ class DatabaseFunctions
         )";
         $root_conn->query($sql);
 
-        // Voeg sample games toe
+        // Voeg games toe
         $result = $root_conn->query("SELECT COUNT(*) as count FROM games");
         $row = $result->fetch_assoc();
         if ($row['count'] == 0) {
@@ -119,21 +119,23 @@ class DatabaseFunctions
 
     private function loadEnv()
     {
-        $envFile = __DIR__ . '/.env';
+        $envFile = __DIR__ . '/../.env';
 
         if (!file_exists($envFile)) {
             die("Error: .env bestand niet gevonden op: " . __DIR__);
         }
 
         $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
-
+        // door deze code worden regels die beginnen met # overgeslagen. dus geen comments
         foreach ($lines as $line) {
             if (strpos(trim($line), '#') === 0) {
                 continue;
             }
-
+            // strpos zoekt naar de positie van = in de string
             if (strpos($line, '=') !== false) {
+                // de 2 zorgt er voor dat alles in 2 stukken wordt gesp;its na de eerste = blijft alles bij elkaar
                 list($key, $value) = explode('=', $line, 2);
+                // het wordt opgeslagen in de env array en de witruimtes worden verwijdert.
                 $_ENV[trim($key)] = trim($value);
             }
         }

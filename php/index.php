@@ -7,7 +7,7 @@ if (!isset($_SESSION['gebruikersnaam'])) {
     exit();
 }
 
-// Role check met fallback
+// Role check
 $role = $_SESSION['role'] ?? 'user';
 
 if ($role === 'admin') {
@@ -32,9 +32,6 @@ $games = $db->getAllGames();
     <p><a href="logout.php">Uitloggen</a></p>
     
     <hr>
-    
-    <h2>Games Overzicht</h2>
-    <p>Je kunt alleen games bekijken (read-only)</p>
     
     <table border="1">
         <thead>
