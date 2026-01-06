@@ -9,7 +9,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
     if (empty($gebruikersnaam) || empty($wachtwoord)) {
         $error = 'Vul alle velden in';
-        // strlen() is een function die de lengte van een string teruggeeft
+        // strlen() is een functie die de lengte van een string teruggeeft
     } elseif (strlen($wachtwoord) < 6) {
         $error = 'Wachtwoord moet minimaal 6 karakters zijn';
     } else {

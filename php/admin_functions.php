@@ -9,7 +9,7 @@ class AdminDatabaseFunctions
 
     public function __construct()
     {
-        $dotenv = Dotenv::createImmutable(__DIR__ . '/../.env');
+        $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
         $dotenv->load();
 
         $host = $_ENV['DB_HOST'];
